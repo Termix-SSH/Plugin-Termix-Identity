@@ -60,7 +60,7 @@ export function registerRoutes(
    * /plugin-api/termix-identity/u/{handle}/ca:
    *   get:
    *     summary: Public CA key for a handle
-   *     description: Public. The certificate authority's public key, for TrustedUserCAKeys or an @cert-authority line. The 2.8 URL /termix-id/u/{handle}/ca redirects here.
+   *     description: Public. The certificate authority's public key, for TrustedUserCAKeys or an @cert-authority line.
    *     tags: [Termix ID]
    *     parameters:
    *       - in: path
@@ -81,7 +81,7 @@ export function registerRoutes(
    * /plugin-api/termix-identity/u/{handle}:
    *   get:
    *     summary: Published keys for a handle
-   *     description: Public. authorized_keys lines for every enabled key, or an HTML viewer when the client accepts text/html. Never cached. The 2.8 URL /termix-id/u/{handle} redirects here.
+   *     description: Public. authorized_keys lines for every enabled key, or an HTML viewer when the client accepts text/html. Never cached.
    *     tags: [Termix ID]
    *     parameters:
    *       - in: path
@@ -102,7 +102,7 @@ export function registerRoutes(
    * /plugin-api/termix-identity/u/{handle}/{algo}:
    *   get:
    *     summary: Published keys of one algorithm for a handle
-   *     description: Public. Like /u/{handle}, keeping only keys whose algorithm group matches (RSA, ED25519, ECDSA and so on). The 2.8 URL /termix-id/u/{handle}/{algo} redirects here.
+   *     description: Public. Like /u/{handle}, keeping only keys whose algorithm group matches (RSA, ED25519, ECDSA and so on).
    *     tags: [Termix ID]
    *     parameters:
    *       - in: path
