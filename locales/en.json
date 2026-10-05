@@ -69,7 +69,8 @@
     "certIssueFailed": "Failed to issue certificate",
     "docsLink": "View docs",
     "principalsLabel": "SSH principals",
-    "principalsPlaceholder": "SSH principal(s), e.g. root"
+    "principalsPlaceholder": "SSH principal(s), e.g. root",
+    "removeKeyConfirm": "Remove the key {{name}}?"
   },
   "nav": {
     "termixId": "ID"

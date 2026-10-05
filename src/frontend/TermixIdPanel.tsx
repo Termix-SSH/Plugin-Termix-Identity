@@ -22,6 +22,7 @@ import {
   Select2,
   SettingRow,
   Textarea,
+  useConfirm,
 } from "@termix/plugin-sdk/ui";
 import type { TermixIdApi } from "./api";
 import type { LinkedStore } from "./linked-store";
@@ -314,7 +315,7 @@ function IdentityCard({
   onChanged: () => void;
 }) {
   const { t } = useTranslation();
-  const [confirming, setConfirming] = useState(false);
+  const confirm = useConfirm();
   const [busy, setBusy] = useState(false);
   const url =
     identity.resolverUrl ??
@@ -322,6 +323,11 @@ function IdentityCard({
   const curl = `curl -fsSL ${url} >> ~/.ssh/authorized_keys`;
 
   async function remove() {
+    const ok = await confirm({
+      title: t("termixId.deleteConfirm"),
+      confirmLabel: t("common.delete"),
+    });
+    if (!ok) return;
     setBusy(true);
     try {
       await api.remove();
@@ -331,7 +337,6 @@ function IdentityCard({
       toast.error(errorMessage(e, t("termixId.deleteFailed")));
     } finally {
       setBusy(false);
-      setConfirming(false);
     }
   }
 
@@ -340,58 +345,27 @@ function IdentityCard({
       title={t("termixId.title")}
       icon={<Fingerprint className="size-3.5" />}
       action={
-        confirming ? (
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive"
-              onClick={remove}
-              disabled={busy}
-            >
-              {busy ? (
-                <Loader2 className="animate-spin size-3.5" />
-              ) : (
-                t("common.confirm")
-              )}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirming(false)}
-            >
-              {t("common.cancel")}
-            </Button>
-          </div>
-        ) : (
-          <div className="flex items-center gap-1">
-            <a
-              href={DOCS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="text-[10px] text-accent-brand hover:underline px-1"
-            >
-              {t("termixId.docsLink")}
-            </a>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              onClick={() => setConfirming(true)}
-              className="hover:text-destructive"
-            >
-              <Trash2 className="size-3.5" />
-            </Button>
-          </div>
-        )
+        <div className="flex items-center gap-1">
+          <a
+            href={DOCS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[10px] text-accent-brand hover:underline px-1"
+          >
+            {t("termixId.docsLink")}
+          </a>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => void remove()}
+            disabled={busy}
+            className="hover:text-destructive"
+          >
+            <Trash2 className="size-3.5" />
+          </Button>
+        </div>
       }
     >
-      {confirming && (
-        <div className="py-2 border-b border-border">
-          <p className="text-xs text-muted-foreground">
-            {t("termixId.deleteConfirm")}
-          </p>
-        </div>
-      )}
       <div className="flex items-center gap-2 py-2.5 border-b border-border">
         <span className="text-sm font-semibold text-accent-brand">
           @{identity.handle}
@@ -637,6 +611,7 @@ function KeyList({
   onChanged: () => void;
 }) {
   const { t } = useTranslation();
+  const confirm = useConfirm();
   const [issuingId, setIssuingId] = useState<number | null>(null);
   const [principalsByKey, setPrincipalsByKey] = useState<
     Record<number, string>
@@ -651,6 +626,13 @@ function KeyList({
   }
 
   async function remove(k: TermixIdentityKey) {
+    const ok = await confirm({
+      title: t("termixId.removeKeyConfirm", {
+        name: k.label || k.comment || k.keyType,
+      }),
+      confirmLabel: t("common.remove"),
+    });
+    if (!ok) return;
     try {
       await api.removeKey(k.id);
       toast.success(t("termixId.keyRemoved"));
@@ -784,8 +766,7 @@ function CaCard({
 }) {
   const { t } = useTranslation();
   const [busy, setBusy] = useState(false);
-  const [confirmingRotate, setConfirmingRotate] = useState(false);
-  const [confirmingDelete, setConfirmingDelete] = useState(false);
+  const confirm = useConfirm();
 
   const caUrl = ca?.resolverUrl ?? "";
   const trustCmd = `curl -fsSL ${caUrl} | sudo tee /etc/ssh/${handle}-ca.pub && echo "TrustedUserCAKeys /etc/ssh/${handle}-ca.pub" | sudo tee -a /etc/ssh/sshd_config && sudo systemctl reload sshd`;
@@ -804,6 +785,11 @@ function CaCard({
   }
 
   async function rotate() {
+    const ok = await confirm({
+      title: t("termixId.caRotateConfirm"),
+      confirmLabel: t("termixId.caRotate"),
+    });
+    if (!ok) return;
     setBusy(true);
     try {
       await api.rotateCa();
@@ -813,11 +799,15 @@ function CaCard({
       toast.error(errorMessage(e, t("termixId.caRotateFailed")));
     } finally {
       setBusy(false);
-      setConfirmingRotate(false);
     }
   }
 
   async function remove() {
+    const ok = await confirm({
+      title: t("termixId.caDeleteConfirm"),
+      confirmLabel: t("termixId.caDelete"),
+    });
+    if (!ok) return;
     setBusy(true);
     try {
       await api.removeCa();
@@ -827,7 +817,6 @@ function CaCard({
       toast.error(errorMessage(e, t("termixId.caDeleteFailed")));
     } finally {
       setBusy(false);
-      setConfirmingDelete(false);
     }
   }
 
@@ -850,58 +839,12 @@ function CaCard({
               t("termixId.caEnable")
             )}
           </Button>
-        ) : confirmingRotate ? (
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive"
-              onClick={rotate}
-              disabled={busy}
-            >
-              {busy ? (
-                <Loader2 className="animate-spin size-3.5" />
-              ) : (
-                t("termixId.caRotate")
-              )}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirmingRotate(false)}
-            >
-              {t("common.cancel")}
-            </Button>
-          </div>
-        ) : confirmingDelete ? (
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive"
-              onClick={remove}
-              disabled={busy}
-            >
-              {busy ? (
-                <Loader2 className="animate-spin size-3.5" />
-              ) : (
-                t("termixId.caDelete")
-              )}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirmingDelete(false)}
-            >
-              {t("common.cancel")}
-            </Button>
-          </div>
         ) : (
           <div className="flex items-center gap-1">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setConfirmingRotate(true)}
+              onClick={() => void rotate()}
               disabled={busy}
             >
               <RefreshCw className="size-3.5" />
@@ -910,7 +853,7 @@ function CaCard({
             <Button
               variant="ghost"
               size="icon-sm"
-              onClick={() => setConfirmingDelete(true)}
+              onClick={() => void remove()}
               disabled={busy}
               className="hover:text-destructive"
             >
@@ -925,20 +868,6 @@ function CaCard({
           {t("termixId.caIntro")}
         </p>
       </div>
-      {confirmingRotate && (
-        <div className="py-2.5 border-b border-border">
-          <p className="text-xs text-destructive/80 leading-snug">
-            {t("termixId.caRotateConfirm")}
-          </p>
-        </div>
-      )}
-      {confirmingDelete && (
-        <div className="py-2.5 border-b border-border">
-          <p className="text-xs text-destructive/80 leading-snug">
-            {t("termixId.caDeleteConfirm")}
-          </p>
-        </div>
-      )}
       {ca && (
         <>
           <CopyRow label={t("termixId.caTrustLabel")} value={trustCmd} />

@@ -53,6 +53,7 @@ export function activate(app: TermixApp): void {
       id: VIEW,
       icon: Fingerprint,
       titleKey: "nav.termixId",
+      group: "objects",
       after: "credentials",
       promotable: true,
       separatorAfter: true,
