@@ -7,7 +7,7 @@ import {
   refUser,
   text,
   varchar,
-} from "@termix/plugin-sdk/db";
+} from "@termix-ssh/plugin-sdk/db";
 
 /** One public handle per user. Adopted from core's termix_identities. */
 export const identities = adoptLegacyTable(

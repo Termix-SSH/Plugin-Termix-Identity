@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { afterEach, describe, expect, it } from "vitest";
 import ssh2 from "ssh2";
-import { createMockCtx } from "@termix/plugin-sdk/testing";
+import { createMockCtx } from "@termix-ssh/plugin-sdk/testing";
 import { ed25519RawFromLine } from "../../src/backend/certificate.js";
 import { manifest, startServer, type TestServer } from "./helpers";
 

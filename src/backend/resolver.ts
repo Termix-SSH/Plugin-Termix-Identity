@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import type { PluginContext } from "@termix/plugin-sdk/backend";
+import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 import { HANDLE_REGEX, asError } from "./handles.js";
 import { matchesAlgoFilter } from "./keys.js";
 import type { KeyRow, Store } from "./store.js";

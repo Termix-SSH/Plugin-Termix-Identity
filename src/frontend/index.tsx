@@ -4,7 +4,7 @@ import {
   useTranslation,
   type Disposer,
   type TermixApp,
-} from "@termix/plugin-sdk/frontend";
+} from "@termix-ssh/plugin-sdk/frontend";
 import { TermixIdPanel } from "./TermixIdPanel";
 import { createTermixIdApi } from "./api";
 import { createLinkedStore, type LinkedStore } from "./linked-store";

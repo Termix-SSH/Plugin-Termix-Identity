@@ -2,7 +2,7 @@ import type { Request, Response, Router } from "express";
 // ssh2 is CommonJS and its `utils` named export is not visible to ESM, so it
 // is read off the default import.
 import ssh2 from "ssh2";
-import type { PluginContext } from "@termix/plugin-sdk/backend";
+import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 import { parsePublicKey } from "./keys.js";
 import {
   ed25519RawFromLine,

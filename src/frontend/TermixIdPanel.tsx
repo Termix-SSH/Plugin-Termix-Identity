@@ -13,7 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { toast } from "sonner";
-import { useTranslation } from "@termix/plugin-sdk/frontend";
+import { useTranslation } from "@termix-ssh/plugin-sdk/frontend";
 import {
   Button,
   FakeSwitch,
@@ -23,7 +23,7 @@ import {
   SettingRow,
   Textarea,
   useConfirm,
-} from "@termix/plugin-sdk/ui";
+} from "@termix-ssh/plugin-sdk/ui";
 import type { TermixIdApi } from "./api";
 import type { LinkedStore } from "./linked-store";
 import {
