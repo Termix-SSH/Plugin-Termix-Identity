@@ -26,7 +26,7 @@ function notFound(res: Response, body = "Not found\n") {
   return res.status(404).type("text/plain").send(body);
 }
 
-export function escapeHtml(value: string): string {
+function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -35,7 +35,7 @@ export function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-export function renderHtml(
+function renderHtml(
   handle: string,
   keys: Array<Pick<KeyRow, "algorithm" | "publicKey">>,
   resolverUrl: string,

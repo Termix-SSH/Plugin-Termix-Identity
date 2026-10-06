@@ -8,7 +8,7 @@ export const MAX_PUBLIC_KEY_LENGTH = 8192;
 
 // Normalized algorithm groups, used both for storage and for the `/<ALGO>`
 // resolver filter (mirrors sshid.io's RSA/ED25519/ECDSA suffixes).
-export const ALGO_GROUPS: Record<string, string> = {
+const ALGO_GROUPS: Record<string, string> = {
   "ssh-rsa": "RSA",
   "rsa-sha2-256": "RSA",
   "rsa-sha2-512": "RSA",
