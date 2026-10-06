@@ -128,8 +128,8 @@ export function TermixIdPanel({
   }
 
   return (
-    <div className="flex-1 min-h-0 overflow-y-auto scrollbar-none">
-      <div className="flex flex-col gap-3 p-3">
+    <div className="flex-1 min-h-0 overflow-y-auto thin-scrollbar">
+      <div className="flex flex-col gap-2 p-2.5">
         {!identity ? (
           <ClaimHandle api={api} onCreated={changed} />
         ) : (
