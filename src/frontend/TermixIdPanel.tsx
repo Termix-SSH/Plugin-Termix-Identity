@@ -33,8 +33,9 @@ import {
   type TermixIdentity,
   type TermixIdentityKey,
 } from "./types";
+import { docsUrl } from "./docs";
 
-const DOCS_URL = "https://docs.termix.site/features/authentication/termix-id";
+const DOCS_URL = docsUrl();
 
 const accentBtn =
   "border-accent-brand/40 text-accent-brand hover:bg-accent-brand/20 hover:text-accent-brand";

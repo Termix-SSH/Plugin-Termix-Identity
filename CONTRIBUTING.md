@@ -10,6 +10,6 @@ npm run validate   # check manifest.json
 npm run format     # format the code with Prettier
 ```
 
-## Permissions
+## Docs
 
-- `termix-identity.use`: claim a handle, publish keys and run a CA. Admins and users have it by default.
+The docs for this plugin are in [docs/](docs/) and are published at https://docs.termix.site/plugins/termix-identity. Settings, permissions, services, environment variables and the API reference are made from `manifest.json` and the `@openapi` comments in the code, so keep those up to date instead of writing them by hand. See [writing docs](https://docs.termix.site/develop/docs).

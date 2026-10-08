@@ -14,6 +14,8 @@
 
 Termix Identity is a built-in take on sshid.io. Claim a handle, publish your SSH public keys at a public URL, and issue SSH certificates from your own certificate authority.
 
+Read the [docs](https://docs.termix.site/plugins/termix-identity) to set it up and use it.
+
 <br />
 
 ## Features
