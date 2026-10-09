@@ -425,6 +425,21 @@ describe("certificate authority", () => {
     );
   });
 
+  it("refuses a certificate without principals", async () => {
+    server = await startServer();
+    await claim();
+    await server.request("POST", "/ca", { body: {} });
+    const key = await server.request("POST", "/keys", {
+      body: { publicKey: ed25519Line() },
+    });
+    const issued = await server.request(
+      "POST",
+      `/keys/${key.body.id}/certificate`,
+      { body: { principals: [" "] } },
+    );
+    expect(issued.status).toBe(400);
+  });
+
   it("refuses a certificate without a CA or for a non-Ed25519 key", async () => {
     server = await startServer();
     await claim();
@@ -462,7 +477,7 @@ describe("certificate authority", () => {
     });
     const oldCert = (
       await server.request("POST", `/keys/${key.body.id}/certificate`, {
-        body: {},
+        body: { principals: ["root"] },
       })
     ).body.certificate;
 
@@ -481,7 +496,7 @@ describe("certificate authority", () => {
 
     const newCert = (
       await server.request("POST", `/keys/${key.body.id}/certificate`, {
-        body: {},
+        body: { principals: ["root"] },
       })
     ).body;
     expect(newCert.validityDays).toBe(7);

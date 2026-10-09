@@ -770,7 +770,7 @@ function CaCard({
   const confirm = useConfirm();
 
   const caUrl = ca?.resolverUrl ?? "";
-  const trustCmd = `curl -fsSL ${caUrl} | sudo tee /etc/ssh/${handle}-ca.pub && echo "TrustedUserCAKeys /etc/ssh/${handle}-ca.pub" | sudo tee -a /etc/ssh/sshd_config && sudo systemctl reload sshd`;
+  const trustCmd = `curl -fsSL ${caUrl} | sudo tee /etc/ssh/${handle}-ca.pub && echo "TrustedUserCAKeys /etc/ssh/${handle}-ca.pub" | sudo tee -a /etc/ssh/sshd_config && (sudo systemctl reload ssh || sudo systemctl reload sshd)`;
 
   async function enable() {
     setBusy(true);

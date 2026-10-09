@@ -854,10 +854,12 @@ export function registerRoutes(
    *         schema:
    *           type: integer
    *     requestBody:
+   *       required: true
    *       content:
    *         application/json:
    *           schema:
    *             type: object
+   *             required: [principals]
    *             properties:
    *               validityDays:
    *                 type: integer
@@ -869,7 +871,7 @@ export function registerRoutes(
    *       200:
    *         description: Issued certificate
    *       400:
-   *         description: Not an Ed25519 key, or no CA
+   *         description: Not an Ed25519 key, no CA, or no principals
    *       404:
    *         description: Key not found
    */
@@ -906,6 +908,12 @@ export function registerRoutes(
             .map((p: string) => p.trim())
             .slice(0, 32)
         : [];
+      // OpenSSH treats a certificate with no principals as valid for any user.
+      if (principals.length === 0) {
+        return res
+          .status(400)
+          .json({ error: "At least one principal is required" });
+      }
 
       const now = Math.floor(Date.now() / 1000);
       const validBefore = now + validityDays * 86400;
