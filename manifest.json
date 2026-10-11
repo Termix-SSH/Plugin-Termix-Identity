@@ -35,9 +35,7 @@
         "id": "termix-id",
         "titleKey": "nav.termixId",
         "icon": "Fingerprint",
-        "openFrom": [
-          "rail"
-        ]
+        "openFrom": ["rail"]
       }
     ],
     "permissions": [
@@ -45,17 +43,10 @@
         "name": "use",
         "titleKey": "permissions.use.title",
         "descriptionKey": "permissions.use.description",
-        "defaultRoles": [
-          "admin",
-          "user"
-        ]
+        "defaultRoles": ["admin", "user"]
       }
     ]
   },
   "locales": "locales",
-  "platforms": [
-    "linux",
-    "win32",
-    "darwin"
-  ]
+  "platforms": ["linux", "win32", "darwin"]
 }
