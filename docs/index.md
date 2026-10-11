@@ -2,7 +2,7 @@ Termix Identity gives you a public handle with a URL that serves your current SS
 
 ## Claim a handle
 
-Open **ID** from the sidebar. Pick a handle (lowercase letters, numbers, `-` and `_`) and create your Termix ID.
+Open ID from the sidebar. Pick a handle (lowercase letters, numbers, `-` and `_`) and create your Termix ID.
 
 Your keys are now served at a URL like:
 
@@ -14,7 +14,7 @@ Anyone can read it, like any public key. It never serves private keys.
 
 ## Publish keys
 
-Press **Add key** and pick one of three ways:
+Press Add key and pick one of three ways:
 
 - **Generate** a new Ed25519 key pair. The public key is published, the private key is downloaded to you, and you can save it as a [credential](/guide/credentials) at the same time.
 - **Paste** a public key you already have.
@@ -36,9 +36,9 @@ It adds the keys you publish now. It doesn't update later. To keep a server in s
 
 Instead of copying keys to every server, trust your CA once and sign keys with it.
 
-1. Turn on the CA in the **ID** panel.
+1. Turn on the CA in the ID panel.
 2. Run the trust command it shows on each server, as root. It tells `sshd` to accept certificates from your CA.
-3. Hover a key and press the certificate button, then enter the user names it is for (its principals), like `root`, and press **Issue**. Only Ed25519 keys can be signed.
+3. Hover a key and press the certificate button, then enter the user names it is for (its principals), like `root`, and press Issue. Only Ed25519 keys can be signed.
 
 Certificates expire on their own. To cut off every certificate at once, rotate the CA and run the trust command again on each server. Until a server has the new CA key, it still accepts the old certificates.
 
