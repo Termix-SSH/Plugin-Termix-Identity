@@ -1,7 +1,7 @@
 {
   "id": "termix-identity",
   "name": "Termix Identity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Publish your SSH public keys under a public handle and run your own SSH certificate authority.",
   "author": {
     "name": "Termix"
@@ -35,7 +35,9 @@
         "id": "termix-id",
         "titleKey": "nav.termixId",
         "icon": "Fingerprint",
-        "openFrom": ["rail"]
+        "openFrom": [
+          "rail"
+        ]
       }
     ],
     "permissions": [
@@ -43,10 +45,17 @@
         "name": "use",
         "titleKey": "permissions.use.title",
         "descriptionKey": "permissions.use.description",
-        "defaultRoles": ["admin", "user"]
+        "defaultRoles": [
+          "admin",
+          "user"
+        ]
       }
     ]
   },
   "locales": "locales",
-  "platforms": ["linux", "win32", "darwin"]
+  "platforms": [
+    "linux",
+    "win32",
+    "darwin"
+  ]
 }
