@@ -16,9 +16,9 @@ Anyone can read it, like any public key. It never serves private keys.
 
 Press Add key and pick one of three ways:
 
-- **Generate** a new Ed25519 key pair. The public key is published, the private key is downloaded to you, and you can save it as a [credential](/guide/credentials) at the same time.
-- **Paste** a public key you already have.
-- **Import** the public key of a credential saved in Termix.
+- Generate a new Ed25519 key pair. The public key is published, the private key is downloaded to you, and you can save it as a [credential](/guide/credentials) at the same time.
+- Paste a public key you already have.
+- Import the public key of a credential saved in Termix.
 
 Turn a published key off without removing it.
 
