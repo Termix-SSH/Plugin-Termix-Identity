@@ -9,6 +9,7 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/Termix-SSH/Plugin-Termix-Identity",
   "docs": "https://docs.termix.site/plugins/termix-identity",
+  "video": "https://www.youtube.com/watch?v=2F_A99YzjNw",
   "category": "Access & Security",
   "icon": "Fingerprint",
   "features": [
