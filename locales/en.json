@@ -87,5 +87,9 @@
       "title": "Use Termix ID",
       "description": "Claim a public handle, publish SSH keys and run a certificate authority."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publish your SSH public keys under a public handle and run your own SSH certificate authority."
   }
 }
