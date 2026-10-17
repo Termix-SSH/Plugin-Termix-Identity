@@ -1,7 +1,7 @@
 {
   "id": "termix-identity",
   "name": "Termix Identity",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Publish your SSH public keys under a public handle and run your own SSH certificate authority.",
   "author": {
     "name": "Termix"
