@@ -87,5 +87,9 @@
       "title": "使用 Termix ID",
       "description": "申請公開帳號、發布 SSH 金鑰並執行憑證授權單位。"
     }
+  },
+  "plugin": {
+    "name": "Termix 身分",
+    "description": "以公開使用者名稱發佈你的 SSH 公鑰，並執行你自己的 SSH 憑證授權單位。"
   }
 }
