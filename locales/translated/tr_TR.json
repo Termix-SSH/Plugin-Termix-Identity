@@ -87,5 +87,9 @@
       "title": "Termix ID kullan",
       "description": "Genel bir kullanıcı adı alın, SSH anahtarlarını yayınlayın ve bir sertifika yetkilisi çalıştırın."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "SSH genel anahtarlarınızı bir halka açık takma ad altında yayınlayın ve kendi SSH sertifika otoritenizi çalıştırın."
   }
 }

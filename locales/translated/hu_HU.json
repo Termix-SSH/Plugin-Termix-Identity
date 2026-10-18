@@ -87,5 +87,9 @@
       "title": "Termix ID használata",
       "description": "Nyilvános név igénylése, SSH-kulcsok közzététele és tanúsítványhatóság futtatása."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Tegye nyilvánossá SSH nyilvános kulcsait egy nyilvános név alatt, és üzemeltessen saját SSH tanúsítványkiadót."
   }
 }

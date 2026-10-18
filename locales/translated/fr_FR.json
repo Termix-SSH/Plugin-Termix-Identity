@@ -87,5 +87,9 @@
       "title": "Utiliser Termix ID",
       "description": "Réclamer un identifiant public, publier des clés SSH et exécuter une autorité de certification."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publiez vos clés SSH publiques sous un identifiant public et gérez votre propre autorité de certification SSH."
   }
 }

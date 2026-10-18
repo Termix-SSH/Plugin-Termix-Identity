@@ -87,5 +87,9 @@
       "title": "Usa Termix ID",
       "description": "Ottieni un handle pubblico, pubblica chiavi SSH e gestisci un'autorità di certificazione."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Pubblica le tue chiavi pubbliche SSH sotto un handle pubblico e gestisci la tua autorità di certificazione SSH."
   }
 }

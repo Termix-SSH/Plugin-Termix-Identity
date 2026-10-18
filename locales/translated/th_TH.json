@@ -87,5 +87,9 @@
       "title": "ใช้ Termix ID",
       "description": "ขอชื่อสาธารณะ เผยแพร่ SSH keys และดำเนินการ Certificate Authority"
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "เผยแพร่คีย์สาธารณะ SSH ของคุณภายใต้ชื่อผู้ใช้สาธารณะ และดำเนินการศูนย์ออกใบรับรอง SSH ของคุณเอง"
   }
 }

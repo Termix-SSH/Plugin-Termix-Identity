@@ -87,5 +87,9 @@
       "title": "Gebruik Termix ID",
       "description": "Kry 'n openbare handvatsel, publiseer SSH-sleutels en bedryf 'n sertifikaatowerheid."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publiseer jou SSH-openbare sleutels onder 'n openbare handvatsel en bedryf jou eie SSH-sertifikaatowerheid."
   }
 }

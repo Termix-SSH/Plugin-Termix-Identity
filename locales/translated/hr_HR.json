@@ -87,5 +87,9 @@
       "title": "Koristi Termix ID",
       "description": "Rezerviraj javni handle, objavi SSH ključeve i pokreni autoritet certifikata."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Objavite svoje javne SSH ključeve pod javnim nadimkom i pokrenite vlastiti SSH certifikacijski centar."
   }
 }

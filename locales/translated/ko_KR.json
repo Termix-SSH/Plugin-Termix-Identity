@@ -87,5 +87,9 @@
       "title": "Termix ID 사용",
       "description": "공개 핸들을 등록하고, SSH 키를 게시하며, 인증 기관을 실행합니다."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "공개 핸들 아래에 SSH 공개 키를 게시하고 자체 SSH 인증서 기관을 운영하세요."
   }
 }

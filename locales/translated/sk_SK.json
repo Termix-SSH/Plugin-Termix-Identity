@@ -87,5 +87,9 @@
       "title": "Používať Termix ID",
       "description": "Získajte verejný identifikátor, zverejnite SSH kľúče a spustite certifikačnú autoritu."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publikujte svoje verejné SSH kľúče pod verejným menom a prevádzkujte vlastnú certifikačnú autoritu SSH."
   }
 }

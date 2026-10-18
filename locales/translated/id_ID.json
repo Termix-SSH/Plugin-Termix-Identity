@@ -87,5 +87,9 @@
       "title": "Gunakan Termix ID",
       "description": "Klaim handle publik, publikasikan kunci SSH, dan jalankan otoritas sertifikat."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publikasikan kunci publik SSH Anda di bawah nama pengguna publik dan jalankan otoritas sertifikat SSH Anda sendiri."
   }
 }

@@ -87,5 +87,9 @@
       "title": "Brug Termix ID",
       "description": "Reserver et offentligt håndtag, udgiv SSH-nøgler og kør en certifikatautoritet."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Udpublikér dine offentlige SSH-nøgler under et offentligt håndtag, og kør din egen SSH-certifikatautoritet."
   }
 }

@@ -87,5 +87,9 @@
       "title": "Naudoti Termix ID",
       "description": "Gauti viešą identifikatorių, skelbti SSH raktus ir valdyti sertifikavimo centrą."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Paskelbkite savo viešuosius SSH raktus viešuoju slapyvardžiu ir valdykite savo SSH sertifikatų išdavimo centrą."
   }
 }

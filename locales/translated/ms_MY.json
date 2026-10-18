@@ -87,5 +87,9 @@
       "title": "Gunakan Termix ID",
       "description": "Daftar pemegang awam, terbitkan kunci SSH dan jalankan pihak berkuasa sijil."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Terbitkan kunci awam SSH anda di bawah pemegang awam dan jalankan pihak berkuasa sijil SSH anda sendiri."
   }
 }

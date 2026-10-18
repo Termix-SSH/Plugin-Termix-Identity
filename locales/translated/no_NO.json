@@ -87,5 +87,9 @@
       "title": "Bruk Termix ID",
       "description": "Registrer en offentlig håndtering, publiser SSH-nøkler og kjør en sertifikatmyndighet."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publiser de offentlige SSH-nøklene dine under et offentlig håndtak og kjør din egen SSH-sertifikatmyndighet."
   }
 }

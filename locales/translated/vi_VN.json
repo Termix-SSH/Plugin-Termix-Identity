@@ -87,5 +87,9 @@
       "title": "Sử dụng Termix ID",
       "description": "Đăng ký tên công khai, xuất bản khóa SSH và chạy cơ quan cấp chứng chỉ."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Xuất bản khóa công khai SSH của bạn dưới một tên người dùng công khai và vận hành cơ quan cấp chứng chỉ SSH riêng."
   }
 }

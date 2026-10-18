@@ -87,5 +87,9 @@
       "title": "Använd Termix ID",
       "description": "Reservera ett offentligt namn, publicera SSH-nycklar och kör en certifikatmyndighet."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publicera dina SSH-nycklar under ett offentligt namn och kör din egen SSH-certifikatmyndighet."
   }
 }

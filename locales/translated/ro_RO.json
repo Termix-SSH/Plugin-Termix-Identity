@@ -87,5 +87,9 @@
       "title": "Folosește Termix ID",
       "description": "Obțineți un nume public, publicați chei SSH și rulați o autoritate de certificare."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publicați-vă cheile publice SSH sub un nume de utilizator public și executați propria autoritate de certificare SSH."
   }
 }

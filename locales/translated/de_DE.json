@@ -87,5 +87,9 @@
       "title": "Termix ID verwenden",
       "description": "Öffentlichen Handle beanspruchen, SSH-Schlüssel veröffentlichen und eine Zertifizierungsstelle betreiben."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Veröffentlichen Sie Ihre SSH-Öffentlichen Schlüssel unter einem öffentlichen Handle und betreiben Sie Ihre eigene SSH-Zertifizierungsstelle."
   }
 }

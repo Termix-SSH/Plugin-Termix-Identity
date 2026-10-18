@@ -87,5 +87,9 @@
       "title": "Kasuta Termix ID-d",
       "description": "Registreeri avalik käepide, avalda SSH võtmeid ja käivita sertifitseerimisasutus."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Avalda oma SSH avalikud võtmed avaliku nime all ja käivita omaenda SSH-sertifikaadi väljastaja."
   }
 }

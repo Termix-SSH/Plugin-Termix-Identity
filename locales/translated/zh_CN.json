@@ -87,5 +87,9 @@
       "title": "使用 Termix ID",
       "description": "获取公开标识符，发布 SSH 密钥并运行证书颁发机构。"
     }
+  },
+  "plugin": {
+    "name": "Termix 身份",
+    "description": "以公开用户名发布你的 SSH 公钥，并运行你自己的 SSH 证书颁发机构。"
   }
 }

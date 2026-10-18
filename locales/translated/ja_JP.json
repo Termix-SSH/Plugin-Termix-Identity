@@ -87,5 +87,9 @@
       "title": "Termix ID を使用する",
       "description": "公開ハンドルを取得し、SSH キーを公開し、認証局を実行します。"
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "SSH公開鍵を公開ハンドルで公開し、独自のSSH認証局を運用します。"
   }
 }

@@ -87,5 +87,9 @@
       "title": "Použít Termix ID",
       "description": "Získejte veřejnou identitu, publikujte SSH klíče a provozujte certifikační autoritu."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publikujte své veřejné SSH klíče pod veřejným identifikátorem a provozujte vlastní autoritu pro vydávání SSH certifikátů."
   }
 }

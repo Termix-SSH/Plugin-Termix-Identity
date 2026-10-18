@@ -87,5 +87,9 @@
       "title": "Käytä Termix ID:tä",
       "description": "Varaa julkinen tunnus, julkaise SSH-avaimia ja käytä sertifikaattiviranomaista."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Julkaise SSH-julkaisavaimesi julkisen tunnuksen alla ja hallinnoi omaa SSH-varmenneviranomaisuutta."
   }
 }

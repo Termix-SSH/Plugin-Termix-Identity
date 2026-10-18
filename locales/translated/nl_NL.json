@@ -87,5 +87,9 @@
       "title": "Termix ID gebruiken",
       "description": "Een openbaar handle claimen, SSH-sleutels publiceren en een certificaatautoriteit draaien."
     }
+  },
+  "plugin": {
+    "name": "Termix Identity",
+    "description": "Publiceer uw SSH-openbare sleutels onder een openbaar alias en beheer uw eigen SSH-certificaatautoriteit."
   }
 }
