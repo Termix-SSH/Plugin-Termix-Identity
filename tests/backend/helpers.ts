@@ -23,6 +23,8 @@ export const CREDENTIALS_DDL =
 export interface TestServer {
   db: TestDb;
   mock: MockPluginContext;
+  /** Certificates the route handed to the core, in call order. */
+  certificateWrites: Array<{ credentialId: number; certificate: string }>;
   request: (
     method: string,
     path: string,
@@ -78,6 +80,24 @@ export async function startServer(
     actor: "user-1",
   });
 
+  // Core offers the certificate writer from a later SDK on; record the calls
+  // here so these tests hold whichever SDK version is installed.
+  const certificateWrites: Array<{
+    credentialId: number;
+    certificate: string;
+  }> = [];
+  (
+    mock.ctx.credentials as unknown as {
+      setSshKeyCertificate?: (
+        credentialId: number,
+        certificate: string | null,
+      ) => Promise<{ id: number; changed: boolean }>;
+    }
+  ).setSshKeyCertificate = async (credentialId, certificate) => {
+    certificateWrites.push({ credentialId, certificate: certificate ?? "" });
+    return { id: credentialId, changed: true };
+  };
+
   const { activate } = await import("../../src/backend/index.js");
   await activate(mock.ctx);
 
@@ -111,6 +131,7 @@ export async function startServer(
   return {
     db,
     mock,
+    certificateWrites,
     async request(method, path, { user = "user-1", body, headers } = {}) {
       const response = await fetch(`http://127.0.0.1:${port}${path}`, {
         method,

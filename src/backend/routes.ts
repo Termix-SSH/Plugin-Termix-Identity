@@ -931,6 +931,48 @@ export function registerRoutes(
         return res.status(500).json({ error: "Failed to sign certificate" });
       }
 
+      // The key row remembers which credential carries its private half, so a
+      // certificate we sign here has an obvious home. Without this the
+      // credential keeps presenting the previous certificate (or none at all)
+      // and the mismatch only shows up much later as a generic "All configured
+      // authentication methods failed" on the next connect.
+      let credential: { credentialId: number; updated: boolean } | null = null;
+      if (key.credentialId) {
+        // The writer arrives with a later core; on an older one the certificate
+        // still reaches the user and the credential can be updated by hand.
+        const writeCertificate = (
+          ctx.credentials as unknown as {
+            setSshKeyCertificate?: (
+              credentialId: number,
+              certificate: string | null,
+            ) => Promise<{ id: number; changed: boolean }>;
+          }
+        ).setSshKeyCertificate;
+        if (!writeCertificate) {
+          credential = { credentialId: key.credentialId, updated: false };
+          ctx.log.warn(
+            `This core cannot store certificates on credentials; credential ${key.credentialId} keeps its previous certificate`,
+          );
+        } else {
+          try {
+            const stored = await writeCertificate.call(
+              ctx.credentials,
+              key.credentialId,
+              certificate,
+            );
+            credential = { credentialId: stored.id, updated: stored.changed };
+          } catch (error) {
+            // Issuing succeeded and the certificate is on its way to the
+            // device; it can still be saved by hand, so this is not a failure.
+            credential = { credentialId: key.credentialId, updated: false };
+            ctx.log.error(
+              `Could not store the certificate on credential ${key.credentialId}`,
+              asError(error),
+            );
+          }
+        }
+      }
+
       await ctx.audit.record({
         action: "issue_termix_id_certificate",
         resourceType: "termix_id_key",
@@ -939,7 +981,14 @@ export function registerRoutes(
         details: `validity ${validityDays}d${principals.length ? `, principals: ${principals.join(",")}` : ""}`,
         success: true,
       });
-      res.json({ certificate, keyId, validBefore, principals, validityDays });
+      res.json({
+        certificate,
+        keyId,
+        validBefore,
+        principals,
+        validityDays,
+        credential,
+      });
     } catch (error) {
       fail(res, "Failed to issue certificate", error);
     }
