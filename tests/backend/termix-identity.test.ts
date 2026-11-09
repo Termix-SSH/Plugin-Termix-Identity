@@ -425,6 +425,82 @@ describe("certificate authority", () => {
     );
   });
 
+  it("stores the issued certificate on the credential the key came from", async () => {
+    const publicKey = ed25519Line();
+    server = await startServer({
+      sshKeyCredentials: [
+        { id: 3, name: "Laptop", username: "root", publicKey },
+      ],
+    });
+    await claim();
+    await server.request("POST", "/ca", { body: {} });
+    const key = await server.request("POST", "/keys", {
+      body: { credentialId: 3 },
+    });
+    expect(key.body.credentialId).toBe(3);
+
+    const issued = await server.request(
+      "POST",
+      `/keys/${key.body.id}/certificate`,
+      { body: { principals: ["root"] } },
+    );
+
+    expect(issued.status).toBe(200);
+    expect(issued.body.credential).toEqual({ credentialId: 3, updated: true });
+    expect(server.certificateWrites).toEqual([
+      { credentialId: 3, certificate: issued.body.certificate },
+    ]);
+  });
+
+  it("reports updated: false when the core has no certificate writer", async () => {
+    const publicKey = ed25519Line();
+    server = await startServer({
+      sshKeyCredentials: [
+        { id: 4, name: "Laptop", username: "root", publicKey },
+      ],
+    });
+    await claim();
+    await server.request("POST", "/ca", { body: {} });
+    const key = await server.request("POST", "/keys", {
+      body: { credentialId: 4 },
+    });
+    delete (
+      server.mock.ctx.credentials as unknown as {
+        setSshKeyCertificate?: unknown;
+      }
+    ).setSshKeyCertificate;
+
+    const issued = await server.request(
+      "POST",
+      `/keys/${key.body.id}/certificate`,
+      { body: { principals: ["root"] } },
+    );
+
+    expect(issued.status).toBe(200);
+    expect(issued.body.certificate).toContain("-cert-v01@openssh.com");
+    expect(issued.body.credential).toEqual({ credentialId: 4, updated: false });
+    expect(server.certificateWrites).toEqual([]);
+  });
+
+  it("issues a certificate for a published key without touching a credential", async () => {
+    server = await startServer();
+    await claim();
+    await server.request("POST", "/ca", { body: {} });
+    const key = await server.request("POST", "/keys", {
+      body: { publicKey: ed25519Line() },
+    });
+
+    const issued = await server.request(
+      "POST",
+      `/keys/${key.body.id}/certificate`,
+      { body: { principals: ["root"] } },
+    );
+
+    expect(issued.status).toBe(200);
+    expect(issued.body.credential).toBeNull();
+    expect(server.certificateWrites).toEqual([]);
+  });
+
   it("refuses a certificate without principals", async () => {
     server = await startServer();
     await claim();
