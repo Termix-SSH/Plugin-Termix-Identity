@@ -1,0 +1,127 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Termix-SSH/Termix/main/scripts/authz/authz.schema.json",
+  "seed": [
+    {
+      "as": "owner",
+      "method": "POST",
+      "path": "/plugin-api/termix-identity",
+      "body": {
+        "handle": "authzown"
+      }
+    }
+  ],
+  "routes": {
+    "DELETE /plugin-api/termix-identity": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "destructive": true
+    },
+    "POST /plugin-api/termix-identity": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "PUT /plugin-api/termix-identity": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "DELETE /plugin-api/termix-identity/ca": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "destructive": true
+    },
+    "GET /plugin-api/termix-identity/ca": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "POST /plugin-api/termix-identity/ca": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "POST /plugin-api/termix-identity/ca/rotate": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "destructive": true
+    },
+    "GET /plugin-api/termix-identity/check/:handle": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "params": {
+        "handle": "=authzfree"
+      },
+      "allowed": "any",
+      "note": "No check in the test data (a handle check, not a stored row); only session, permission and unknown id refusals are checked"
+    },
+    "GET /plugin-api/termix-identity/credentials": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "POST /plugin-api/termix-identity/keys": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "DELETE /plugin-api/termix-identity/keys/:id": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "resource": {
+        "kind": "own",
+        "fixture": "termix-identity.keys"
+      },
+      "params": {
+        "id": "=authz-none"
+      },
+      "destructive": true,
+      "allowed": "any",
+      "note": "No keys in the test data (needs an SSH key credential); only session, permission and unknown id refusals are checked"
+    },
+    "PATCH /plugin-api/termix-identity/keys/:id": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "resource": {
+        "kind": "own",
+        "fixture": "termix-identity.keys"
+      },
+      "params": {
+        "id": "=authz-none"
+      },
+      "allowed": "any",
+      "note": "No keys in the test data (needs an SSH key credential); only session, permission and unknown id refusals are checked"
+    },
+    "POST /plugin-api/termix-identity/keys/:id/certificate": {
+      "access": "user",
+      "permission": "termix-identity.use",
+      "resource": {
+        "kind": "own",
+        "fixture": "termix-identity.keys"
+      },
+      "params": {
+        "id": "=authz-none"
+      },
+      "allowed": "any",
+      "note": "No keys in the test data (needs an SSH key credential); only session, permission and unknown id refusals are checked"
+    },
+    "POST /plugin-api/termix-identity/keys/generate": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "GET /plugin-api/termix-identity/linked-credentials": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "GET /plugin-api/termix-identity/me": {
+      "access": "user",
+      "permission": "termix-identity.use"
+    },
+    "GET /plugin-api/termix-identity/u/:handle": {
+      "access": "public"
+    },
+    "GET /plugin-api/termix-identity/u/:handle/:algo": {
+      "access": "public"
+    },
+    "GET /plugin-api/termix-identity/u/:handle/ca": {
+      "access": "public",
+      "params": {
+        "handle": "=authzown"
+      }
+    }
+  }
+}
