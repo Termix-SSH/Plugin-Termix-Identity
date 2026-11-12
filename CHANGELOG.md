@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1
+
+### Fixed
+
+- The public CA key link works without signing in
+
 ## 1.1.0
 
 ### Added

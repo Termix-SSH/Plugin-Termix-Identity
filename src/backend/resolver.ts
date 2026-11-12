@@ -8,7 +8,7 @@ import type { KeyRow, Store } from "./store.js";
  * The resolver needs no login: servers fetch it from scripts. Paths are
  * relative to /plugin-api/termix-identity/.
  */
-export const PUBLIC_PATHS = ["/u/:handle", "/u/:handle/:algo"];
+export const PUBLIC_PATHS = ["/u/:handle", "/u/:handle/ca", "/u/:handle/:algo"];
 
 /** The public resolver path for a handle, below the base URL. */
 export function resolverPath(handle: string): string {
