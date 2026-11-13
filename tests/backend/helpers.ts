@@ -70,6 +70,7 @@ export async function startServer(
 
   let router: Router | null = null;
   const mock = createMockCtx({
+    sandbox: true,
     pluginId: manifest.id,
     manifest,
     capabilities: options.capabilities ?? manifest.capabilities,
@@ -79,6 +80,10 @@ export async function startServer(
     sshKeyCredentials: options.sshKeyCredentials,
     actor: "user-1",
   });
+
+  // The plugin process reads the base URL from the request itself, which the
+  // sandbox mock in SDK 2.2.0 does not know yet.
+  (mock.ctx.http as { baseUrl: unknown }).baseUrl = () => "https://termix.test";
 
   // Core offers the certificate writer from a later SDK on; record the calls
   // here so these tests hold whichever SDK version is installed.

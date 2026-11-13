@@ -2,6 +2,10 @@
 
 ## 1.1.1
 
+### Changed
+
+- Runs in its own process on Termix 26.11.2 and later, with no access to the server beyond what Termix allows it
+
 ### Fixed
 
 - The public CA key link works without signing in

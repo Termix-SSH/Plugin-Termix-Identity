@@ -19,8 +19,8 @@
     "Your own SSH certificate authority"
   ],
   "engine": {
-    "termix": ">=26.11.1-0",
-    "api": "^1.16"
+    "termix": ">=26.11.2-0",
+    "api": "^2.0.0"
   },
   "capabilities": [
     "db:own",
