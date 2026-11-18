@@ -1,7 +1,8 @@
-import { useEffect, useReducer, type ComponentType } from "react";
+import { useEffect, useReducer } from "react";
 import { Fingerprint } from "lucide-react";
 import {
   useTranslation,
+  type DataResult,
   type Disposer,
   type TermixApp,
 } from "@termix-ssh/plugin-sdk/frontend";
@@ -11,23 +12,22 @@ import { createLinkedStore, type LinkedStore } from "./linked-store";
 
 const VIEW = "termix-id";
 
-function createCredentialBadge(linked: LinkedStore) {
-  /** The "ID" badge on a saved credential whose key is published. */
-  return function CredentialBadge({ credentialId }: { credentialId?: number }) {
+/** The "ID" badge on a saved credential whose key is published, as a value. */
+export function createCredentialBadgeValue(linked: LinkedStore) {
+  return function useCredentialBadgeValue(
+    context: Record<string, unknown>,
+  ): DataResult {
     const { t } = useTranslation();
     const [, rerender] = useReducer((n: number) => n + 1, 0);
     useEffect(() => {
       linked.ensure();
       return linked.subscribe(rerender);
     }, []);
-    if (credentialId === undefined || !linked.has(Number(credentialId))) {
+    const credentialId = Number(context.credentialId);
+    if (!Number.isFinite(credentialId) || !linked.has(credentialId)) {
       return null;
     }
-    return (
-      <span className="text-[9px] px-1 py-px font-bold border leading-none shrink-0 border-accent-brand/30 text-accent-brand/70">
-        {t("credentials.idBadge")}
-      </span>
-    );
+    return { shape: "badge", label: t("credentials.idBadge") };
   };
 }
 
@@ -90,10 +90,8 @@ export function activate(app: TermixApp): void {
   app.registerSlotContribution("credentials.badges", {
     actionId: "termix-identity.credentialBadge",
     titleKey: "credentials.idBadge",
-    kind: "component",
-    component: createCredentialBadge(linked) as unknown as ComponentType<
-      Record<string, unknown>
-    >,
+    kind: "data",
+    useValue: createCredentialBadgeValue(linked),
   });
 }
 

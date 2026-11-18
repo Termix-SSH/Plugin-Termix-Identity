@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.1
+
+### Changed
+
+- Runs in its own process on Termix 26.11.2 and later, with no access to the server beyond what Termix allows it
+- The ID badge on published credentials is a plain value the credential list draws, with no frame per row (needs Termix 26.11.2)
+
+### Fixed
+
+- The public CA key link works without signing in
+
 ## 1.1.0
 
 ### Added
